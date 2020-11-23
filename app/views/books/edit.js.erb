@@ -1,0 +1,7 @@
+$('#modal-books-title').html("Editar book");
+
+// Render the new form
+$('.modal-body-books').html('<%= j render("form") %>');
+
+// Show the dynamic dialog
+$('#modalBooks').modal("show");

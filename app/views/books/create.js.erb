@@ -1,0 +1,4 @@
+$('#modalBooks').modal('toggle');
+$('#tablaBooks').append(
+    '<tr id="book_<%= @book.id %>" ><td><%= @book.titulo %></td><td><%= @book.autor %></td><td><%= @book.anyo %></td><td><%= link_to 'Editar', edit_book_path(@book), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @book, remote: true, method: :delete, data: { confirm: "¿Borrar book: #{@book.titulo}?" }, class: "btn btn-danger btn-xs" %></td></tr>'
+);
