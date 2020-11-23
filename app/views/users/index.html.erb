@@ -26,6 +26,7 @@
                             <td><%= us.apellidos %></td>
                             <td><%= us.direccion %></td>
                             <td>
+                                <%= link_to "Mostrar", user_path(us), {class: "btn btn-info btn-xs", remote: true} %>
                                 <%= link_to "Editar", edit_user_path(us), html_options = {class: "btn btn-info btn-xs", remote: true} %>
                                 <%= link_to 'Borrar', us, remote: true, method: :delete, data: { confirm: "¿Borrar user: #{us.nombres}?" }, class: "btn btn-danger btn-xs" %>
                             </td>

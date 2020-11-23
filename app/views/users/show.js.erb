@@ -1,0 +1,7 @@
+$('#modal-users-title').html("Mostrar user");
+
+// Render the new form
+$('.modal-body-users').html('<%= j render("user") %>');
+
+// Show the dynamic dialog
+$('#modalUsers').modal("show");
