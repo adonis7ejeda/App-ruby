@@ -1,0 +1,4 @@
+$('#modalUsers').modal('toggle');
+$('#user_<%= @user.id %>').replaceWith(
+    '<tr id="user_<%= @user.id %>" ><td><%= @user.nombres %></td><td><%= @user.apellidos %></td><td><%= @user.direccion %></td><td><%= link_to 'Editar', edit_user_path(@user), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @user, remote: true, method: :delete, data: { confirm: "¿Borrar user: #{@user.nombres}?" }, class: "btn btn-danger btn-xs" %></td></tr>'
+);

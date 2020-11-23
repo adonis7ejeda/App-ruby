@@ -1,0 +1,61 @@
+<%= form_for @user, remote: true do |f| %>
+    <div class="form-group">
+        <h4 class="control-label">Datos del user:</h4>
+    </div>
+
+
+        <div class="item form-group<%= @user.errors[:nombres].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :nombres, "Nombres: " %>
+        <%= f.text_field :nombres, {:class=> "form-control", :placeholder=>"Introduzca el nombre del user"} %>
+        <%if @user.errors[:nombres].any? %>
+            <p class="bg-danger"><%= @user.errors[:nombres].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @user.errors[:apellidos].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :apellidos, "Apellidos: " %>
+        <%= f.text_field :apellidos, {:class=> "form-control", :placeholder=>"Introduzca los apellidos del user"} %>
+        <%if @user.errors[:apellidos].any? %>
+            <p class="bg-danger"><%= @user.errors[:apellidos].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @user.errors[:direccion].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :direccion, "Direccion del user: " %>
+        <%= f.text_field :direccion, {:class=> "form-control", :placeholder=>"Introduzca la direccion del user"} %>
+        <%if @user.errors[:direccion].any? %>
+            <p class="bg-danger"><%= @user.errors[:direccion].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @user.errors[:telefono].any? ? ' has-error has-feedback' : '' %>" >
+        <%= f.label :telefono, "Telefono del user: " %>
+        <%= f.text_field :telefono, {:class=> "form-control", :placeholder=>"Introduzca el telefono del user"} %>
+        <%if @user.errors[:telefono].any? %>
+            <p class="bg-danger"><%= @user.errors[:telefono].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+
+
+        <div class="item form-group<%= @user.errors[:password].any? ? ' has-error has-feedback' : '' %>" style="<%= @user.new_record? ? "" : "display: none" %>">
+        <%= f.label :password, "Password del user: " %>
+        <%= f.password_field :password, {:class=> "form-control", :placeholder=>"Introduzca la password del user"} %>
+        <%if @user.errors[:password].any? %>
+            <p class="bg-danger"><%= @user.errors[:password].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @user.errors[:email].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :email, "Email del user: " %>
+        <%= f.text_field :email, {:class=> "form-control", :placeholder=>"Introduzca el email del user"} %>
+        <%if @user.errors[:email].any? %>
+            <p class="bg-danger"><%= @user.errors[:email].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group">
+            <%= f.submit @user.new_record? ? "Crear user" : "Actualizar user", :class => "btn btn-success" %>
+        </div>
+
+<% end %>

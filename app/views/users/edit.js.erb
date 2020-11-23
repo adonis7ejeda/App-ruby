@@ -1,0 +1,7 @@
+$('#modal-users-title').html("Editar user");
+
+// Render the new form
+$('.modal-body-users').html('<%= j render("form") %>');
+
+// Show the dynamic dialog
+$('#modalUsers').modal("show");
