@@ -1,0 +1,40 @@
+<h1 class="h3 mb-2 text-gray-800">Books</h1>
+
+<div>
+    <%= link_to new_book_path, {remote: true, class: "btn btn-info", id: "añadir-book-btn"} do %>
+        <span class="fas fa-plus-square"></span>
+    <% end %>
+</div>
+<br/>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tablaBooks" class="table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Año</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @books.each do |boo| %>
+                        <tr id="book_<%= boo.id %>" >
+                            <td><%= boo.titulo %></td>
+                            <td><%= boo.autor %></td>
+                            <td><%= boo.anyo %></td>
+                            <td>
+                                <%= link_to "Editar", edit_book_path(boo), html_options = {class: "btn btn-info btn-xs", remote: true} %>
+                                <%= link_to 'Borrar', boo, remote: true, method: :delete, data: { confirm: "¿Borrar book: #{boo.titulo}?" }, class: "btn btn-danger btn-xs" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%= render 'modal_books' %>

@@ -1,0 +1,35 @@
+<%= form_for @book, remote: true do |f| %>
+    <div class="form-group">
+        <h4 class="control-label">Datos del books:</h4>
+    </div>
+
+
+        <div class="item form-group<%= @book.errors[:titulo].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :titulo, "Titulo del book: " %>
+        <%= f.text_field :titulo, {:class=> "form-control", :placeholder=>"Introduzca el nombre del book"} %>
+        <%if @book.errors[:titulo].any? %>
+            <p class="bg-danger"><%= @book.errors[:titulo].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @book.errors[:autor].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :autor, "Autor del book: " %>
+        <%= f.text_field :autor, {:class=> "form-control", :placeholder=>"Introduzca el autor del book"} %>
+        <%if @book.errors[:autor].any? %>
+            <p class="bg-danger"><%= @book.errors[:autor].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @book.errors[:anyo].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :anyo, "Año del book: " %>
+        <%= f.text_field :anyo, {:class=> "form-control", :placeholder=>"Introduzca el año del book"} %>
+        <%if @book.errors[:anyo].any? %>
+            <p class="bg-danger"><%= @book.errors[:anyo].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group">
+            <%= f.submit @book.new_record? ? "Crear book" : "Actualizar book", :class => "btn btn-success" %>
+        </div>
+
+<% end %>
