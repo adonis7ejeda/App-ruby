@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_23_051930) do
+ActiveRecord::Schema.define(version: 2020_11_24_173120) do
 
   create_table "books", force: :cascade do |t|
     t.string "titulo"
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 2020_11_23_051930) do
   create_table "loans", force: :cascade do |t|
     t.date "fecha"
     t.boolean "estado"
-    t.integer "users_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_loans_on_users_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,5 +63,5 @@ ActiveRecord::Schema.define(version: 2020_11_23_051930) do
   add_foreign_key "details", "books", column: "books_id"
   add_foreign_key "details", "loans", column: "loans_id"
   add_foreign_key "fines", "Loans"
-  add_foreign_key "loans", "users", column: "users_id"
+  add_foreign_key "loans", "users"
 end

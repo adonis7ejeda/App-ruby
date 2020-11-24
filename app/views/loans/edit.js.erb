@@ -1,0 +1,7 @@
+$('#modal-loans-title').html("Editar prestamo");
+
+// Render the new form
+$('.modal-body-loans').html('<%= j render("form") %>');
+
+// Show the dynamic dialog
+$('#modalLoans').modal("show");

@@ -1,0 +1,42 @@
+<h1 class="h3 mb-2 text-gray-800">Loans</h1>
+
+<div>
+    <%= link_to new_loan_path, {remote: true, class: "btn btn-info"} do %>
+        <span class="fas fa-plus-square"> Añadir</span>
+    <% end %>
+</div>
+<br/>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tablaLoans" class="table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Usuarios</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @loans.each do |lo| %>
+                        <tr id="loan_<%= lo.id %>" >
+                            <td><%= lo.id %></td>
+                            <td><%= lo.fecha %></td>
+                            <td><%= lo.estado == true ? "Devuelto" : "Prestado" %></td>
+                            <td><%= lo.user != nil ? lo.user.nombres : "No existen usuarios" %></td>
+                            <td>
+                                <%= link_to "Editar", edit_loan_path(lo), html_options = {class: "btn btn-info btn-xs", remote: true} %>
+                                <%= link_to 'Borrar', lo, remote: true, method: :delete, data: { confirm: "¿Borrar loan: #{lo.id}?" }, class: "btn btn-danger btn-xs" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%= render 'modal_loans' %>

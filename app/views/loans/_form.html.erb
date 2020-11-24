@@ -1,0 +1,29 @@
+<%= form_for @loan, remote: true do |f| %>
+    <div class="form-group">
+        <h4 class="control-label">Datos del prestamo:</h4>
+    </div>
+
+
+        <div class="item form-group<%= @loan.errors[:fecha].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :fecha, "Fecha prestamo: " %>
+        <%= f.date_field :fecha, {:class=> "form-control"} %>
+        <%if @loan.errors[:fecha].any? %>
+            <p class="bg-danger"><%= @loan.errors[:fecha].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @loan.errors[:estado].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :estado, "Estado: " %>
+        <%= select(:loan, :estado, [['Seleccione un estado', nil], ['Prestado', 0], ['Devuelto', 1]], html_options = {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group<%= @loan.errors[:user].any? ? ' has-error has-feedback' : '' %>">
+            <%= f.label :user, "Usuario: " %>
+            <%= collection_select(:loan, :user_id, @users, :id, :nombres, {:prompt => 'Seleccione usuario'}, {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group">
+            <%= f.submit @loan.new_record? ? "Crear Prestamo" : "Actualizar prestamo", :class => "btn btn-success" %>
+        </div>
+
+<% end %>

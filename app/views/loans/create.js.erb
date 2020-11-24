@@ -1,0 +1,4 @@
+$('#modalLoans').modal('toggle');
+$('#tablaLoans').append(
+    '<tr id="loan_<%= @loan.id %>" ><td><%= @loan.id %></td><td><%= @loan.fecha %></td><td><%= @loan.estado == true ? "Devuelto" : "Prestado" %></td><td><%= @loan.user != nil ? @loan.user.nombres : "No existen usuarios" %></td><td><%= link_to 'Editar', edit_loan_path(@loan), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @loan, remote: true, method: :delete, data: { confirm: "¿Borrar prestamo: #{@loan.id}?" }, class: "btn btn-danger btn-xs" %></td></tr>'
+);
