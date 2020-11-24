@@ -1,4 +1,4 @@
 class Loan < ApplicationRecord
-  belongs_to :users
-  has_many :details
+  has_many :details, dependent: :destroy
+  belongs_to :users, optional: true
 end
