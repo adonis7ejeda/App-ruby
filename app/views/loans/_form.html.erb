@@ -14,7 +14,7 @@
 
         <div class="item form-group<%= @loan.errors[:estado].any? ? ' has-error has-feedback' : '' %>">
         <%= f.label :estado, "Estado: " %>
-        <%= select(:loan, :estado, [['Seleccione un estado', nil], ['Prestado', 0], ['Devuelto', 1]], html_options = {class: "form-control"}) %>
+        <%= f.select(:estado, [['Prestado', 0], ['Devuelto', 1]], {:prompt => 'Seleccione estado'}, {class: "form-control"}) %>
         </div>
 
         <div class="item form-group<%= @loan.errors[:user].any? ? ' has-error has-feedback' : '' %>">
