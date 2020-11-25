@@ -1,0 +1,4 @@
+$('#modalFines').modal('toggle');
+$('#tablaFines').append(
+    '<tr id="fine_<%= @fine.id %>" ><td><%= @fine.id %></td><td><%= @fine.valor %></td><td><%= @fine.fecha %></td><td><%= @fine.estado == true ? "Pagado" : "En espera" %></td><td><%= @fine.Loan != nil ? @fine.Loan.id : "No existen prestamos" %></td><td><%= link_to 'Editar', edit_fine_path(@fine), html_options = {class: "btn btn-info btn-xs", remote: true} %> <%= link_to "Borrar", @fine, remote: true, method: :delete, data: { confirm: "¿Borrar multa: #{@fine.id}?" }, class: "btn btn-danger btn-xs" %></td></tr>'
+);

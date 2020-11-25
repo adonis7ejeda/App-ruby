@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :books, except: [:show]
   resources :users
   resources :loans, except: [:show]
+  resources :fines, except: [:show]
 end

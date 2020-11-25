@@ -1,0 +1,7 @@
+$('#modal-fines-title').html("Editar multa");
+
+// Render the new form
+$('.modal-body-fines').html('<%= j render("form") %>');
+
+// Show the dynamic dialog
+$('#modalFines').modal("show");

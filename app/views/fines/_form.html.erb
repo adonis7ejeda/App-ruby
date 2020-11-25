@@ -1,0 +1,36 @@
+<%= form_for @fine, remote: true do |f| %>
+    <div class="form-group">
+        <h4 class="control-label">Datos de la multa:</h4>
+    </div>
+
+        <div class="item form-group<%= @fine.errors[:valor].any? ? ' has-error has-feedback' : '' %>">
+            <%= f.label :valor, "Valor de la multa: " %>
+            <%= f.number_field :valor, {:class=> "form-control"} %>
+            <%if @fine.errors[:valor].any? %>
+                <p class="bg-danger"><%= @fine.errors[:valor].to_s[/\w([^"]*)/] %></p>
+            <% end %>
+        </div>
+
+        <div class="item form-group<%= @fine.errors[:fecha].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :fecha, "Fecha multa: " %>
+        <%= f.date_field :fecha, {:class=> "form-control"} %>
+        <%if @fine.errors[:fecha].any? %>
+            <p class="bg-danger"><%= @fine.errors[:fecha].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @fine.errors[:estado].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :estado, "Estado: " %>
+        <%= select(:fine, :estado, [['Seleccione un estado', nil], ['Pagada', 1], ['En espera', 0]], html_options = {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group<%= @fine.errors[:Loan].any? ? ' has-error has-feedback' : '' %>">
+            <%= f.label :Loan, "Prestamo: " %>
+            <%= collection_select(:fine, :Loan_id, @loans, :id, :id, {:prompt => 'Seleccione prestamo'}, {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group">
+            <%= f.submit @fine.new_record? ? "Crear Multa" : "Actualizar multa", :class => "btn btn-success" %>
+        </div>
+
+<% end %>

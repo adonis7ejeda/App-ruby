@@ -1,3 +1,3 @@
 class Fine < ApplicationRecord
-  belongs_to :loans
+  belongs_to :Loan
 end

@@ -1,0 +1,44 @@
+<h1 class="h3 mb-2 text-gray-800">Fines</h1>
+
+<div>
+    <%= link_to new_fine_path, {remote: true, class: "btn btn-info"} do %>
+        <span class="fas fa-plus-square"> Añadir</span>
+    <% end %>
+</div>
+<br/>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tablaFines" class="table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Valor</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Prestamo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @fines.each do |fi| %>
+                        <tr id="fine_<%= fi.id %>" >
+                            <td><%= fi.id %></td>
+                            <td><%= fi.valor %></td>
+                            <td><%= fi.fecha %></td>
+                            <td><%= fi.estado == true ? "Pagado" : "En espera" %></td>
+                            <td><%= fi.Loan != nil ? fi.Loan.id : "No existen prestamos" %></td>
+                            <td>
+                                <%= link_to "Editar", edit_fine_path(fi), html_options = {class: "btn btn-info btn-xs", remote: true} %>
+                                <%= link_to 'Borrar', fi, remote: true, method: :delete, data: { confirm: "¿Borrar multa: #{fi.id}?" }, class: "btn btn-danger btn-xs" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%= render 'modal_fines' %>
