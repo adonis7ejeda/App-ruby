@@ -1,0 +1,7 @@
+$('#modal-details-title').html("Editar detalle");
+
+// Render the new form
+$('.modal-body-details').html('<%= j render("form") %>');
+
+// Show the dynamic dialog
+$('#modalDetails').modal("show");

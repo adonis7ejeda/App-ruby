@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :users
   resources :loans, except: [:show]
   resources :fines, except: [:show]
+  resources :details, except: [:show]
 end

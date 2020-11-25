@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_173120) do
+ActiveRecord::Schema.define(version: 2020_11_25_053442) do
 
   create_table "books", force: :cascade do |t|
     t.string "titulo"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 2020_11_24_173120) do
 
   create_table "details", force: :cascade do |t|
     t.integer "cantidad"
-    t.integer "books_id", null: false
-    t.integer "loans_id", null: false
+    t.integer "book_id", null: false
+    t.integer "loan_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["books_id"], name: "index_details_on_books_id"
-    t.index ["loans_id"], name: "index_details_on_loans_id"
+    t.index ["book_id"], name: "index_details_on_book_id"
+    t.index ["loan_id"], name: "index_details_on_loan_id"
   end
 
   create_table "fines", force: :cascade do |t|
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_173120) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "details", "books", column: "books_id"
-  add_foreign_key "details", "loans", column: "loans_id"
+  add_foreign_key "details", "books"
+  add_foreign_key "details", "loans"
   add_foreign_key "fines", "Loans"
   add_foreign_key "loans", "users"
 end

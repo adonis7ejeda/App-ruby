@@ -1,0 +1,29 @@
+<%= form_for @detail, remote: true do |f| %>
+    <div class="form-group">
+        <h4 class="control-label">Detalle del prestamo:</h4>
+    </div>
+
+
+        <div class="item form-group<%= @detail.errors[:cantidad].any? ? ' has-error has-feedback' : '' %>">
+        <%= f.label :cantidad, "Cantidad: " %>
+        <%= f.number_field :cantidad, {:class=> "form-control"} %>
+        <%if @detail.errors[:cantidad].any? %>
+            <p class="bg-danger"><%= @detail.errors[:cantidad].to_s[/\w([^"]*)/] %></p>
+        <% end %>
+        </div>
+
+        <div class="item form-group<%= @detail.errors[:loan].any? ? ' has-error has-feedback' : '' %>">
+            <%= f.label :loan, "Prestamo: " %>
+            <%= collection_select(:detail, :loan_id, @loans, :id, :id, {:prompt => 'Seleccione prestamo'}, {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group<%= @detail.errors[:book].any? ? ' has-error has-feedback' : '' %>">
+            <%= f.label :book, "Libro: " %>
+            <%= collection_select(:detail, :book_id, @books, :id, :titulo, {:prompt => 'Seleccione libro'}, {class: "form-control"}) %>
+        </div>
+
+        <div class="item form-group">
+            <%= f.submit @detail.new_record? ? "Crear detalle prestamo" : "Actualizar detalle prestamo", :class => "btn btn-success" %>
+        </div>
+
+<% end %>

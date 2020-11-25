@@ -1,0 +1,42 @@
+<h1 class="h3 mb-2 text-gray-800">Details</h1>
+
+<div>
+    <%= link_to new_detail_path, {remote: true, class: "btn btn-info"} do %>
+        <span class="fas fa-plus-square"> Añadir</span>
+    <% end %>
+</div>
+<br/>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="tablaDetails" class="table table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cantidad</th>
+                        <th>Libro</th>
+                        <th>Prestamo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @details.each do |de| %>
+                        <tr id="detail_<%= de.id %>" >
+                            <td><%= de.id %></td>
+                            <td><%= de.cantidad %></td>
+                            <td><%= de.book != nil ? de.book.titulo : "No existen libros" %></td>
+                            <td><%= de.loan != nil ? de.loan.id : "No existen prestamos" %></td>
+                            <td>
+                                <%= link_to "Editar", edit_detail_path(de), html_options = {class: "btn btn-info btn-xs", remote: true} %>
+                                <%= link_to 'Borrar', de, remote: true, method: :delete, data: { confirm: "¿Borrar detail: #{de.id}?" }, class: "btn btn-danger btn-xs" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%= render 'modal_details' %>
